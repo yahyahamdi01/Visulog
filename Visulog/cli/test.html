@@ -1,0 +1,62 @@
+<html><body><link rel="stylesheet" href="buttonStyle.css">
+
+<div>
+    <button onclick="afficheTableau()" class="bouton">Display as Table</button>
+    <button onclick="afficheCamembertC()" class="bouton">Display as Piechart</button>
+    <button onclick="afficheColumnchartC()" class="bouton">Display as Column Chart</button>
+    <button onclick="affichePyramidC()" class="bouton">Display as Pyramid</button>
+    <button onclick="afficheDonutC()" class="bouton">Display as Doughnut</button>
+</div>
+
+<script>
+    function afficheTableau() {
+        window.location.replace("test.html");
+    }
+
+    function afficheCamembertC() {
+        window.location.replace("Camembert.html?val=commits&name=Commits per Author:");
+    }
+
+    function afficheColumnchartC() {
+        window.location.replace("Columnchart.html?val=commits&name=Commits per Author:");
+    }
+
+    function affichePyramidC() {
+        window.location.replace("Pyramidchart.html?val=commits&name=Commits per Author:");
+    }
+
+    function afficheDonutC() {
+        window.location.replace("Donut.html?val=commits&name=Commits per Author:");
+    }
+</script>
+
+<div>
+    <script type="text/javascript" src="data.js"></script>
+    <table border="10" align="center" cellpadding="8">
+        <br>
+        <caption style="font-size: xx-large; font-family: Courier">Commits Per Author: </caption>
+        <thead>
+            <tr>
+                <th style="font-family: Courier">Author name</th>
+                <th style="font-family: Courier">Number of commits</th>
+            </tr>
+            <script>
+                val = "commits";
+                name = "Commits per Author:";
+                for (let i = 0, len = arr[name].length - 1; i < len; i++) {
+                    document.writeln('<tr>\n<td style=\"font-family: Courier\">');
+                    document.writeln(arr[name][i] + '\n</td>\n<td style=\"font-family: Courier\">');
+                    document.writeln(arr[val][i] + '\n</td>\n<tr>');
+                }
+                var totalnumbercommits = 0;
+                for (let i = 0, len = arr[name].length; i < len; i++) {
+                    totalnumbercommits = totalnumbercommits + +arr[val][i];
+                }
+                document.writeln('<tr>\n<td style=\"font-family: Courier\">');
+                document.writeln("Total number of commits" + '\n</td>\n<td style=\"font-family: Courier\">');
+                document.writeln(totalnumbercommits + '\n</td>\n<tr>');
+            </script>
+        </thead>
+    </table>
+</div>
+</body></html>

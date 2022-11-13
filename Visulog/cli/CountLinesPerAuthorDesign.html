@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="buttonStyle.css">
+
+<div>
+    <button onclick="afficheTableau()" class="bouton">Display as Table</button>
+    <button onclick="afficheCamembert()" class="bouton">Display as Piechart</button>
+    <button onclick="afficheColumnchart()" class="bouton">Display as Column Chart</button>
+    <button onclick="affichePyramid()" class="bouton">Display as Pyramid</button>
+    <button onclick="afficheDonut()" class="bouton">Display as Doughnut</button>
+</div>
+
+<script>
+    function afficheTableau() {
+        window.location.replace("test.html");
+    }
+
+    function afficheCamembert() {
+        window.location.replace("Camembert.html?val=lines&name=Lines per Author:");
+    }
+
+    function afficheColumnchart() {
+        window.location.replace("Columnchart.html?val=lines&name=Lines per Author:");
+    }
+
+    function affichePyramid() {
+        window.location.replace("Pyramidchart.html?val=lines&name=Lines per Author:");
+    }
+
+    function afficheDonut() {
+        window.location.replace("Donut.html?val=lines&name=Lines per Author:");
+    }
+</script>
+
+<div>
+    <script type="text/javascript" src="data.js"></script>
+    <table border="10" align="center" cellpadding="8">
+        <br>
+        <caption style="font-size: xx-large; font-family: Courier">Lines Per Author: </caption>
+        <thead>
+            <tr>
+                <th style="font-family: Courier">Author name</th>
+                <th style="font-family: Courier">Number of lines</th>
+            </tr>
+            <script>
+                val = "lines";
+                name = "Lines per Author:";
+                for (let i = 0, len = arr[name].length; i < len; i++) {
+                    document.writeln('<tr>\n<td style=\"font-family: Courier\">');
+                    document.writeln(arr[name][i] + '\n</td>\n<td style=\"font-family: Courier\">');
+                    document.writeln(arr[val][i] + '\n</td>\n<tr>');
+                }
+            </script>
+        </thead>
+    </table>
+</div>

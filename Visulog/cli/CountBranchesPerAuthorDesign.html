@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="buttonStyle.css">
+
+<div>
+    
+    <button onclick="afficheCamembertB()" class="bouton">Display as Piechart</button>
+    <button onclick="afficheColumnchartB()" class="bouton">Display as Column Chart</button>
+    <button onclick="affichePyramidB()" class="bouton">Display as Pyramid</button>
+    <button onclick="afficheDonutB()" class="bouton">Display as Doughnut</button>
+</div>
+
+<script>
+   /* function afficheTableau() {
+        window.location.replace("test.html");
+    }
+**/
+    function afficheCamembertB() {
+        window.location.replace("Camembert.html?val=branches&name=Branches per Author:");
+    }
+
+    function afficheColumnchartB() {
+        window.location.replace("Columnchart.html?val=branches&name=Branches per Author:");
+    }
+
+    function affichePyramidB() {
+        window.location.replace("Pyramidchart.html?val=branches&name=Branches per Author:");
+    }
+
+    function afficheDonutB() {
+        window.location.replace("Donut.html?val=branches&name=Branches per Author:");
+    }
+</script>
+
+<div>
+    <script type="text/javascript" src="data.js"></script>
+    <script>afficheCamembertB()</script>
+</div>

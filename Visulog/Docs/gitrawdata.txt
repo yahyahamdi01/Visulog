@@ -1,0 +1,46 @@
+﻿Commit.java:
+
+
+The Class commit contains a constructor Commit the initialize 5 different attributes :
+
+
+-Id
+-Date
+-AUthor
+-Description
+-MergedFrom
+
+
+The class also contains the function parseCommit() that takes a parameter "input" of type BufferReader  and returns an object of type Optional<Commit>.
+
+
+Reminder of the class BufferReader:Reads text from a character-input stream, buffering characters so as to provide for the efficient reading of characters, arrays, and lines.
+
+
+First,the function starts by parsing through the Input using .readLine() and separates the Id, then creates an object  builder of type CommitBuilder. It continues to parse through input to extract: Author, Date and MergedFrom and assign them to builder using setDate,setAuthor,...
+Finally, parseCommit extracts the Description of the commit and assigns it using setDescription().
+
+
+Second function is ParseLog() : it also takes a BufferReader parameter “reader” and returns a list of Commit .The func creates an object of type Optional<Commit> and gives it the value of parseCommit(reader), then using a while loop, it checks for all the commits present and add the to an ArrayList<Commit> which will be the return value of the function.
+
+
+
+
+Third function is parseLogFromCommand():it takes a parameter of type Path that points to a file and returns and at the end a list of Commit. The role of this function is to convert an object of type Path to Bufferreader so we will be able to use the function parseLog().
+
+
+parseError() get rid of all the errors that may occur due to throwing a RuntimeException().
+The func ToSting() displays the characteristics of a Commit.
+
+
+
+
+                CommitBuilder.java
+
+
+
+
+The class has:
+- 5 attributes of type String(id,date,author,description and mergedFrom)
+-Constructor CommitBuilder which initializes the parameter Id only
+- the function createCommit() that creates and returns an object of type Commit as defined in the file Commit.java

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Column Chart</title>
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.10.0/js/anychart-cartesian-3d.min.js"></script>
+    <link rel="stylesheet" href="buttonStyle.css">
+</head>
+
+<body>
+    <div>
+        <button onclick="afficheTableau()" class="bouton">Display as Table</button>
+        <button onclick="afficheCamembert()" class="bouton">Display as Piechart</button>
+        <button onclick="afficheColumnchart()" class="bouton">Display as Column Chart</button>
+        <button onclick="affichePyramid()" class="bouton">Display as Pyramid</button>
+        <button onclick="afficheDonut()" class="bouton">Display as Doughnut</button>
+    </div>
+
+    <script>
+        function $_GET(param) {
+            var vars = {};
+            window.location.href.replace(location.hash, '').replace(
+                /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+                function(m, key, value) { // callback
+                    vars[key] = value !== undefined ? value : '';
+                }
+            );
+
+            if (param) {
+                return vars[param] ? vars[param] : null;
+            }
+            return vars;
+        }
+
+        val = decodeURI($_GET('val'));
+        name = decodeURI($_GET('name'));
+
+        function afficheTableau() {
+            window.location.replace("test.html");
+        }
+
+        function afficheCamembert() {
+            window.location.replace("Camembert.html?val=" + val + "&name=" + name);
+        }
+
+        function afficheColumnchart() {
+            window.location.replace("Columnchart.html?val=" + val + "&name=" + name);
+        }
+
+        function affichePyramid() {
+            window.location.replace("Pyramidchart.html?val=" + val + "&name=" + name);
+        }
+
+        function afficheDonut() {
+            window.location.replace("Donut.html?val=" + val + "&name=" + name);
+        }
+    </script>
+
+    <script type="text/javascript" src="data.js"></script>
+    <div id="container" style="height: 700px; margin-top: 30px;"></div>
+    <script>
+        anychart.onDocumentReady(function() {
+            val = decodeURI($_GET('val'));
+            name = decodeURI($_GET('name'));
+            // set the data
+            var data = [];
+
+            for (let i = 0, len = arr[name].length; i < len; i++) {
+                data.push({
+                    x: arr[name][i].trimStart().split(" <")[0],
+                    value: arr[val][i]
+                });
+            }
+
+            // custom them
+            var customTheme = {
+
+                "column3d": {
+                    // set chart title
+                    "title": {
+                        "fontColor": "black",
+                        "fontSize": "x-large",
+                        "fontFamily": "Sans-Serif",
+                        "text": name,
+                        "enabled": true
+                    }
+                }
+            };
+
+            // custom theme
+            var customTheme = {
+
+                "column3d": {
+                    // set chart title
+                    "title": {
+                        "fontColor": "black",
+                        "fontSize": "x-large",
+                        "fontFamily": "Courier",
+                        "fontWeigt": "bold",
+                        "text": name,
+                        "enabled": true
+                    }
+                }
+            };
+
+            // apply the theme
+            anychart.theme(customTheme);
+
+            // create the chart
+            var chart = anychart.column3d();
+
+            // create a column series and set the data
+
+
+            var series = chart.column(data);
+
+
+            // set series tooltip settings
+            series.tooltip().titleFormat('{%X}');
+
+            series
+                .tooltip()
+                .position('center-top')
+                .anchor('center-bottom')
+                .offsetX(0)
+                .offsetY(5)
+                .format('{%Value}{groupsSeparator: } ' + val);
+
+            var labels = chart.xAxis().labels();
+            labels.fontFamily("Courier");
+            labels.fontColor("black");
+            labels.useHtml(false);
+
+            var labels2 = chart.yAxis().labels();
+            labels2.fontFamily("Courier");
+            labels2.fontColor("black");
+            labels2.useHtml(false);
+
+
+            var labels3 = chart.xAxis().title();
+            labels3.fontFamily("Courier");
+            labels3.fontColor("black");
+            labels3.fontStyle("italic");
+            labels3.useHtml(false);
+
+            var labels4 = chart.yAxis().title();
+            labels4.fontFamily("Courier");
+            labels4.fontColor("black");
+            labels4.fontStyle("italic");
+            labels4.useHtml(false);
+
+            // axes titles
+            chart.xAxis().title('Authors');
+
+            chart.yAxis().title('Number of Commits');
+
+            chart.xAxis().labels().rotation(-70);
+
+            // allow two lines in x axis labels
+            chart.xAxis().staggerMode(2);
+
+            // set yAxis labels formatter
+            chart.yAxis().labels().format('{%Value}{groupsSeparator: }');
+
+            // set xAxis labels formatter
+            chart.xAxis().labels().format('{%Value}{groupsSeparator: }');
+
+            // tooltips position and interactivity settings
+            chart.tooltip().positionMode('point');
+            chart.interactivity().hoverMode('by-x');
+
+            // set the container id
+            chart.container("container");
+
+            // initiate drawing the chart
+            chart.draw();
+
+            // set the padding between column groups
+            chart.barGroupsPadding(0);
+
+            series.normal().fill("#0e5996", 0.3);
+            series.hovered().fill("#00cc99", 0.1);
+            series.selected().fill("#0e5996", 0.5);
+            series.normal().stroke("#258CD4", 1, "round");
+            series.hovered().stroke("#00cc99", 2, "round");
+            series.selected().stroke("#505CD4  ", 2, "round");
+        });
+    </script>
+
+</body>
+
+</html>

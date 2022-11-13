@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Pie Chart</title>
+    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-pie.min.js"></script>
+    <link rel="stylesheet" href="buttonStyle.css">
+</head>
+
+<body>
+    <div>
+        <button onclick="afficheTableau()" class="bouton">Display as Table</button>
+        <button onclick="afficheCamembert()" class="bouton">Display as Piechart</button>
+        <button onclick="afficheColumnchart()" class="bouton">Display as Column Chart</button>
+        <button onclick="affichePyramid()" class="bouton">Display as Pyramid</button>
+        <button onclick="afficheDonut()" class="bouton">Display as Doughnut</button>
+    </div>
+
+    <script>
+        function $_GET(param) {
+            var vars = {};
+            window.location.href.replace(location.hash, '').replace(
+                /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+                function(m, key, value) { // callback
+                    vars[key] = value !== undefined ? value : '';
+                }
+            );
+
+            if (param) {
+                return vars[param] ? vars[param] : null;
+            }
+            return vars;
+        }
+
+        val = decodeURI($_GET('val'));
+        name = decodeURI($_GET('name'));
+
+        function afficheTableau() {
+            window.location.replace("test.html");
+        }
+
+        function afficheCamembert() {
+            window.location.replace("Camembert.html?val=" + val + "&name=" + name);
+        }
+
+        function afficheColumnchart() {
+            window.location.replace("Columnchart.html?val=" + val + "&name=" + name);
+        }
+
+        function affichePyramid() {
+            window.location.replace("Pyramidchart.html?val=" + val + "&name=" + name);
+        }
+
+        function afficheDonut() {
+            window.location.replace("Donut.html?val=" + val + "&name=" + name);
+        }
+    </script>
+
+    <script type="text/javascript" src="data.js"></script>
+    <div id="container" style="height: 500px; margin-top: 30px;"></div>
+    <script>
+        anychart.onDocumentReady(function() {
+            val = decodeURI($_GET('val'));
+            name = decodeURI($_GET('name'));
+            // set the data
+            var data = [];
+
+            for (let i = 0, len = arr[name].length; i < len; i++) {
+                data.push({
+                    x: arr[name][i].trimStart().split(" <")[0],
+                    value: arr[val][i]
+                });
+            }
+
+            // custom theme
+            var customTheme = {
+
+                "pie": {
+                    // set chart title
+                    "title": {
+                        "fontColor": "black",
+                        "fontSize": "x-large",
+                        "fontFamily": "Courier",
+                        "text": name,
+                        "enabled": true
+                    }
+                }
+            };
+
+            // apply the theme
+            anychart.theme(customTheme);
+
+            // create the chart
+            var chart = anychart.pie();
+
+            // add the data
+            chart.data(data);
+            // display the chart in the container
+            chart.container('container');
+            chart.draw();
+
+            chart.legend().fontColor("black");
+            chart.legend().fontFamily("Courier");
+
+            // set legend position
+            chart.legend().position("right");
+            // set items layout
+            chart.legend().itemsLayout("vertical");
+
+            // sort elements
+            chart.sort("desc");
+
+
+        });
+    </script>
+
+</body>
+
+</html>

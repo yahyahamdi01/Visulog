@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="buttonStyle.css">
+
+<div>
+    <button onclick="afficheTableau()" class="bouton">Display as Table</button>
+    <button onclick="afficheCamembertML()" class="bouton">Display as Piechart</button>
+    <button onclick="afficheColumnchartML()" class="bouton">Display as Column Chart</button>
+    <button onclick="affichePyramidML()" class="bouton">Display as Pyramid</button>
+    <button onclick="afficheDonutML()" class="bouton">Display as Doughnut</button>
+</div>
+
+<script>
+    function afficheTableau() {
+        window.location.replace("test.html");
+    }
+
+    function afficheCamembertML() {
+        window.location.replace("Camembert.html?val=modified lines&name=Modified lines per Author:");
+    }
+
+    function afficheColumnchartML() {
+        window.location.replace("Columnchart.html?val=modified lines&name=Modified lines per Author:");
+    }
+
+    function affichePyramidML() {
+        window.location.replace("Pyramidchart.html?val=modified lines&name=Modified lines per Author:");
+    }
+
+    function afficheDonutML() {
+        window.location.replace("Donut.html?val=modified lines&name=Modified lines per Author:");
+    }
+</script>
+
+<div>
+    <script type="text/javascript" src="data.js"></script>
+    <table border="10" align="center" cellpadding="8">
+        <caption style="font-size: xx-large; font-family: Courier">Modified Lines Per Author: </caption>
+        <thead>
+            <br>
+            <tr>
+                <th style="font-family: Courier">Author name</th>
+                <th style="font-family: Courier">Number of lines added</th>
+                <th style="font-family: Courier">Number of lines deleted</th>
+            </tr>
+            <script>
+                val = "modified lines";
+                name = "Modified lines per Author:";
+                for (let i = 0, len = arr[name].length; i < len; i++) {
+                    document.writeln('<tr>\n<td style=\"font-family: Courier\">');
+                    document.writeln(arr[name][i] + '\n</td>\n<td style=\"font-family: Courier\">');
+                    document.writeln(tabNoAddedLines[i] + '\n</td>\n<td style=\"font-family: Courier\">');
+                    document.writeln(tabNoDeletedLines[i] + '\n</td>\n<tr>');
+                }
+            </script>
+        </thead>
+    </table>
+</div>
