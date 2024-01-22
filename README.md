@@ -1,3 +1,5 @@
+####  Project in association With Université Paris Cité
+--------------------------------------------------------
 # Visulog
 
 _Tool for analysis and visualization of git logs_
